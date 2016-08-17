@@ -3,7 +3,7 @@ language: ruby
 before_script:
   - chmod a+x script/bootstrap
   - chmod a+x script/cibuild
-- gem install bundler
+  - gem install bundler
 script : script/cibuild
 sudo: false
 notifications:
