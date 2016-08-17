@@ -1,4 +1,9 @@
+# Travis CI
 language: ruby
+before_script:
+  - chmod a+x script/bootstrap
+  - chmod a+x script/cibuild
+- gem install bundler
 script : script/cibuild
 sudo: false
 notifications:
@@ -8,18 +13,18 @@ branches:
     - master
 
 rvm:
-  - 2.2
-  - 2.1
-  - 2.0
+- 2.3.1
+- 2.3.0
 env:
   - ""
-  - BUNTO_VERSION=2.0.0.beta8
-  - BUNTO_VERSION=1.0
+  - BUNTO_VERSION=3.2.1
+  - BUNTO_VERSION=3.0.0
 matrix:
-  include:
+  allow_failures:
     - # GitHub Pages
       rvm: 2.1.1
       env: GH_PAGES=true
-    - # Ruby 1.9
-      rvm: 1.9
-      env: BUNTO_VERSION=1.0
+  include:
+    - # Ruby 2.2.5
+      rvm: 2.2.5
+      env: BUNTO_VERSION=3.0.0
